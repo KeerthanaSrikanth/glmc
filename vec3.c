@@ -24,3 +24,10 @@
  */
 
 #include "glmc.h"
+	
+void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b){
+	for(int i=0; i<2; i++){
+		dest[i]=src_a[i];
+	}
+	dest[2]=src_b;
+}
