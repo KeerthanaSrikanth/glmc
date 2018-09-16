@@ -72,7 +72,7 @@ void glmc_vec3f_normlize(vec3f dest, vec3f src){
 	}
 }
 
-void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){
+void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){ 
 	for(int i=0; i<3; i++){
 		dest[i]=src_a[i]+src_b[i];
 	}
@@ -156,3 +156,16 @@ void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b){
 	}	
 }
 
+float glmc_vec3f_dot(vec3f src_a, vec3f src_b){
+	float dot=0.0;
+	for(int i=0; i<3; i++){
+		dot=dot+src_a[i]*src_b[i];
+	}
+	return dot;
+}
+
+void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b){
+	dest[0]=src_a[1]*src_b[2]-src_b[1]*src_a[2];
+	dest[1]=src_a[2]*src_b[0]-src_b[2]*src_a[0];
+	dest[2]=src_a[0]*src_b[1]-src_b[0]*src_a[1];
+}
