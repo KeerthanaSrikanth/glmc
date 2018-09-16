@@ -24,6 +24,7 @@
  */
 
 #include "glmc.h"
+#include <math.h>
 	
 void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b){
 	for(int i=0; i<2; i++){
@@ -31,3 +32,28 @@ void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b){
 	}
 	dest[2]=src_b;
 }
+
+void glmc_vec3f_from_4f(vec3f dest, vec4f src){
+	for(int i=0; i<3; i++){
+		dest[i]=src[i];
+	}
+}
+
+void glmc_vec3f_copy(vec3f dest, vec3f src){
+	for(int i=0; i<3; i++){
+		dest[i]=src[i];
+	}
+}
+
+float glmc_vec3f_sqrlength(vec3f vec){
+	float ans=0.0;
+	for(int i=0; i<3; i++){
+		ans=ans+vec[i]*vec[i];
+	}
+	return ans;
+}
+
+float glmc_vec3f_length(vec3f vec){
+	return sqrt(glmc_vec3f_sqrlength(vec));
+}
+
