@@ -48,7 +48,7 @@ void glmc_vec3f_copy(vec3f dest, vec3f src){ //3d to 3d
 }
 
 float glmc_vec3f_sqrlength(vec3f vec){ //Calculates square of length of vector
-	return vec[0]*vec[0]+vec[1]*vec[1]*vec[2]*vec[2];
+	return vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2];
 }
 
 float glmc_vec3f_length(vec3f vec){ //Calculates square of length of vector
@@ -66,8 +66,8 @@ void glmc_vec3f_normlize(vec3f dest, vec3f src){//Normalizes vector
 	float l=glmc_vec3f_length(src);
 
 	dest[0]=src[0]/l;
-	dest[1]=src[1]/l
-	dest[2]=src[2]/l
+	dest[1]=src[1]/l;
+	dest[2]=src[2]/l;
 	
 }
 
