@@ -57,3 +57,17 @@ float glmc_vec3f_length(vec3f vec){
 	return sqrt(glmc_vec3f_sqrlength(vec));
 }
 
+int  glmc_vec3f_is_normalized(vec3f src){
+	if(glmc_vec3f_length(src)==1)
+		return 1;
+	else
+		return 0;
+}
+
+void glmc_vec3f_normlize(vec3f dest, vec3f src){
+	float l=glmc_vec3f_length(src);
+
+	for(int i=0; i<3; i++){
+		dest[i]=src[i]/l;
+	}
+}
