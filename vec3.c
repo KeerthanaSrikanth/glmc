@@ -83,3 +83,52 @@ void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b){
 		src_dest[i]=src_dest[i]+src_b[i];
 	}
 }
+
+void glmc_vec3f_sub(vec3f dest, vec3f src_a, vec3f src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]-src_b[i];
+	}
+}
+
+void glmc_vec3f_sub_dest(vec3f src_dest, vec3f src_b){
+	for(int i=0; i<3; i++){
+		src_dest[i]=src_dest[i]-src_b[i];
+	}
+}
+
+void glmc_vec3f_mul(vec3f dest, vec3f src_a, vec3f src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]*src_b[i];
+	}
+}
+
+void glmc_vec3f_mul_dest(vec3f src_dest, vec3f src_b){
+	for(int i=0; i<3; i++){
+		src_dest[i]=src_dest[i]*src_b[i];
+	}
+}
+
+void glmc_vec3f_mul_s(vec3f dest, vec3f src_a, float src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]*src_b;
+	}
+}
+
+void glmc_vec3f_div(vec3f dest, vec3f src_a, vec3f src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]/src_b[i];
+	}
+}
+
+void glmc_vec3f_div_dest(vec3f src_dest, vec3f src_b){
+	for(int i=0; i<3; i++){
+		src_dest[i]=src_dest[i]/src_b[i];
+	}
+}
+
+void glmc_vec3f_div_s(vec3f dest, vec3f src_a, float src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]/src_b;
+	}
+}
+
