@@ -71,3 +71,15 @@ void glmc_vec3f_normlize(vec3f dest, vec3f src){
 		dest[i]=src[i]/l;
 	}
 }
+
+void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){
+	for(int i=0; i<3; i++){
+		dest[i]=src_a[i]+src_b[i];
+	}
+}
+
+void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b){
+	for(int i=0; i<3; i++){
+		src_dest[i]=src_dest[i]+src_b[i];
+	}
+}
