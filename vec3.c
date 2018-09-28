@@ -26,14 +26,14 @@
 #include "glmc.h"
 #include <math.h>
 	
-void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b){ //3d from 2d
+inline void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b){ //3d from 2d
 	
 	dest[0]=src_a[0];
 	dest[1]=src_a[1];
 	dest[2]=src_b;
 }
 
-void glmc_vec3f_from_4f(vec3f dest, vec4f src){ //3d from 4d
+inline void glmc_vec3f_from_4f(vec3f dest, vec4f src){ //3d from 4d
 	
 	dest[0]=src[0];
 	dest[1]=src[1];
@@ -41,28 +41,28 @@ void glmc_vec3f_from_4f(vec3f dest, vec4f src){ //3d from 4d
 	
 }
 
-void glmc_vec3f_copy(vec3f dest, vec3f src){ //3d to 3d
+inline void glmc_vec3f_copy(vec3f dest, vec3f src){ //3d to 3d
 	dest[0]=src[0];
 	dest[1]=src[1];
 	dest[2]=src[2];
 }
 
-float glmc_vec3f_sqrlength(vec3f vec){ //Calculates square of length of vector
+inline float glmc_vec3f_sqrlength(vec3f vec){ //Calculates square of length of vector
 	return vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2];
 }
 
-float glmc_vec3f_length(vec3f vec){ //Calculates square of length of vector
+inline float glmc_vec3f_length(vec3f vec){ //Calculates square of length of vector
 	return sqrt(glmc_vec3f_sqrlength(vec));
 }
 
-int  glmc_vec3f_is_normalized(vec3f src){ //Checks if vector is normalized
+inline int  glmc_vec3f_is_normalized(vec3f src){ //Checks if vector is normalized
 	if(glmc_vec3f_length(src)==1)
 		return 1;
 	else
 		return 0;
 }
 
-void glmc_vec3f_normlize(vec3f dest, vec3f src){//Normalizes vector
+inline void glmc_vec3f_normlize(vec3f dest, vec3f src){//Normalizes vector
 	float l=glmc_vec3f_length(src);
 
 	dest[0]=src[0]/l;
@@ -71,7 +71,7 @@ void glmc_vec3f_normlize(vec3f dest, vec3f src){//Normalizes vector
 	
 }
 
-void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){ // dest = src_a + src_b
+inline void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){ // dest = src_a + src_b
 	
 	dest[0]=src_a[0]+src_b[0];
 	dest[1]=src_a[1]+src_b[1];
@@ -79,7 +79,7 @@ void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b){ // dest = src_a + src
 	
 }
 
-void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b){// dest += src_a
+inline void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b){// dest += src_a
 	
 	src_dest[0]=src_dest[0]+src_b[0];
 	src_dest[1]=src_dest[1]+src_b[1];
@@ -87,55 +87,55 @@ void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b){// dest += src_a
 	
 }
 
-void glmc_vec3f_sub(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a - src_b
+inline void glmc_vec3f_sub(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a - src_b
 	dest[0]=src_a[0]-src_b[0];
 	dest[1]=src_a[1]-src_b[1];
 	dest[2]=src_a[2]-src_b[2];
 }
 
-void glmc_vec3f_sub_dest(vec3f src_dest, vec3f src_b){ // dest -= src_a
+inline void glmc_vec3f_sub_dest(vec3f src_dest, vec3f src_b){ // dest -= src_a
 	src_dest[0]=src_dest[0]-src_b[0];
 	src_dest[1]=src_dest[1]-src_b[1];
 	src_dest[2]=src_dest[2]-src_b[2];
 }
 
-void glmc_vec3f_mul(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a * src_b
+inline void glmc_vec3f_mul(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a * src_b
 	dest[0]=src_a[0]*src_b[0];
 	dest[1]=src_a[1]*src_b[1];
 	dest[2]=src_a[2]*src_b[2];
 }
 
-void glmc_vec3f_mul_dest(vec3f src_dest, vec3f src_b){// dest *= src_a
+inline void glmc_vec3f_mul_dest(vec3f src_dest, vec3f src_b){// dest *= src_a
 	src_dest[0]=src_dest[0]*src_b[0];
 	src_dest[1]=src_dest[1]*src_b[1];
 	src_dest[2]=src_dest[2]*src_b[2];
 }
 
-void glmc_vec3f_mul_s(vec3f dest, vec3f src_a, float src_b){// dest = src_a * scalar
+inline void glmc_vec3f_mul_s(vec3f dest, vec3f src_a, float src_b){// dest = src_a * scalar
 	dest[0]=src_a[0]*src_b;
 	dest[1]=src_a[1]*src_b;
 	dest[2]=src_a[2]*src_b;
 }
 
-void glmc_vec3f_div(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a / src_b
+inline void glmc_vec3f_div(vec3f dest, vec3f src_a, vec3f src_b){// dest = src_a / src_b
 	dest[0]=src_a[0]/src_b[0];
 	dest[1]=src_a[1]/src_b[1];
 	dest[2]=src_a[2]/src_b[2];
 }
 
-void glmc_vec3f_div_dest(vec3f src_dest, vec3f src_b){// dest /= src_a
+inline void glmc_vec3f_div_dest(vec3f src_dest, vec3f src_b){// dest /= src_a
 	src_dest[0]=src_dest[0]/src_b[0];
 	src_dest[1]=src_dest[1]/src_b[1];
 	src_dest[2]=src_dest[2]/src_b[2];
 }
 
-void glmc_vec3f_div_s(vec3f dest, vec3f src_a, float src_b){// dest = src_a / scalar
+inline void glmc_vec3f_div_s(vec3f dest, vec3f src_a, float src_b){// dest = src_a / scalar
 	dest[0]=src_a[0]/src_b;
 	dest[1]=src_a[1]/src_b;
 	dest[2]=src_a[2]/src_b;
 }
 
-void glmc_vec3f_addadd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a + src_b
+inline void glmc_vec3f_addadd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a + src_b
 	
 	dest[0]=dest[0]+src_a[0]+src_b[0];
 	dest[1]=dest[1]+src_a[1]+src_b[1];
@@ -143,31 +143,31 @@ void glmc_vec3f_addadd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a + 
 	
 }
 
-void glmc_vec3f_subadd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a - src_b
+inline void glmc_vec3f_subadd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a - src_b
 	dest[0]=dest[0]+src_a[0]-src_b[0];
 	dest[1]=dest[1]+src_a[1]-src_b[1];
 	dest[2]=dest[2]+src_a[2]-src_b[2];
 }
 
-void glmc_vec3f_madd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a * src_b
+inline void glmc_vec3f_madd(vec3f dest, vec3f src_a, vec3f src_b){// dest += src_a * src_b
 	dest[0]=dest[0]+src_a[0]*src_b[0];
 	dest[1]=dest[1]+src_a[1]*src_b[1];
 	dest[2]=dest[2]+src_a[2]*src_b[2];
 }
 
-void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b){// dest -= src_a * src_b
+inline void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b){// dest -= src_a * src_b
 	dest[0]=dest[0]-src_a[0]*src_b[0];
 	dest[1]=dest[1]-src_a[1]*src_b[1];
 	dest[2]=dest[2]-src_a[2]*src_b[2];
 }
 
-float glmc_vec3f_dot(vec3f src_a, vec3f src_b){ //Calculates dot product of vectors
+inline float glmc_vec3f_dot(vec3f src_a, vec3f src_b){ //Calculates dot product of vectors
 
 	return src_a[0]*src_b[0]+src_a[1]*src_b[1]+src_a[2]*src_b[2];
 	
 }
 
-void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b){ //Calculates cross product of vectors
+inline void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b){ //Calculates cross product of vectors
 	dest[0]=src_a[1]*src_b[2]-src_b[1]*src_a[2];
 	dest[1]=src_a[2]*src_b[0]-src_b[2]*src_a[0];
 	dest[2]=src_a[0]*src_b[1]-src_b[0]*src_a[1];

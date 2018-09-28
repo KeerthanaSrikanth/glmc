@@ -26,7 +26,7 @@
 #include "glmc.h"
 #include <math.h>
 	
-void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c){ //4d from 2d
+inline void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c){ //4d from 2d
 	
 	dest[0]=src_a[0];
 	dest[1]=src_a[1];	
@@ -34,7 +34,7 @@ void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c){ //4d
 	dest[3]=src_c;
 }
 
-void glmc_vec4f_from_3f(vec4f dest, vec3f src_a, float src_b){ //4d from 3d
+inline void glmc_vec4f_from_3f(vec4f dest, vec3f src_a, float src_b){ //4d from 3d
 	
 	dest[0]=src_a[0];
 	dest[1]=src_a[1];
@@ -42,29 +42,29 @@ void glmc_vec4f_from_3f(vec4f dest, vec3f src_a, float src_b){ //4d from 3d
 	dest[3]=src_b;
 }
 
-void glmc_vec4f_copy(vec4f dest, vec4f src){ //4d to 4d
-	dest[0]=src[0];
+inline void glmc_vec4f_copy(vec4f dest, vec4f src){ //4d to 4d
+    dest[0]=src[0];
 	dest[1]=src[1];
 	dest[2]=src[2];
 	dest[3]=src[3];
 }
 
-float glmc_vec4f_sqrlength(vec4f vec){ //Calculates square of length of vector
+inline float glmc_vec4f_sqrlength(vec4f vec){ //Calculates square of length of vector
 	return vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2]+vec[3]*vec[3];
 }
 
-float glmc_vec4f_length(vec4f vec){ //Calculates square of length of vector
+inline float glmc_vec4f_length(vec4f vec){ //Calculates square of length of vector
 	return sqrt(glmc_vec4f_sqrlength(vec));
 }
 
-int  glmc_vec4f_is_normalized(vec4f src){ //Checks if vector is normalized
+inline int  glmc_vec4f_is_normalized(vec4f src){ //Checks if vector is normalized
 	if(glmc_vec4f_length(src)==1)
 		return 1;
 	else
 		return 0;
 }
 
-void glmc_vec4f_normlize(vec4f dest, vec4f src){//Normalizes vector
+inline void glmc_vec4f_normlize(vec4f dest, vec4f src){//Normalizes vector
 	float l=glmc_vec4f_length(src);
 	
 	dest[0]=src[0]/l;
@@ -74,14 +74,14 @@ void glmc_vec4f_normlize(vec4f dest, vec4f src){//Normalizes vector
 	
 }
 
-void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b){ // dest = src_a + src_b
+inline void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b){ // dest = src_a + src_b
 	dest[0]=src_a[0]+src_b[0];
 	dest[1]=src_a[1]+src_b[1];
 	dest[2]=src_a[2]+src_b[2];
 	dest[3]=src_a[3]+src_b[3];
 }
 
-void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b){// dest += src_a
+inline void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b){// dest += src_a
 	
 	src_dest[0]=src_dest[0]+src_b[0];
 	src_dest[1]=src_dest[1]+src_b[1];
@@ -90,91 +90,91 @@ void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b){// dest += src_a
 	
 }
 
-void glmc_vec4f_sub(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a - src_b
+inline void glmc_vec4f_sub(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a - src_b
 	dest[0]=src_a[0]-src_b[0];
 	dest[1]=src_a[1]-src_b[1];
 	dest[2]=src_a[2]-src_b[2];
 	dest[3]=src_a[3]-src_b[3];
 }
 
-void glmc_vec4f_sub_dest(vec4f src_dest, vec4f src_b){ // dest -= src_a
+inline void glmc_vec4f_sub_dest(vec4f src_dest, vec4f src_b){ // dest -= src_a
 	src_dest[0]=src_dest[0]-src_b[0];
 	src_dest[1]=src_dest[1]-src_b[1];
 	src_dest[2]=src_dest[2]-src_b[2];
 	src_dest[3]=src_dest[3]-src_b[3];
 }
 
-void glmc_vec4f_mul(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a * src_b
+inline void glmc_vec4f_mul(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a * src_b
 	dest[0]=src_a[0]*src_b[0];
 	dest[1]=src_a[1]*src_b[1];
 	dest[2]=src_a[2]*src_b[2];
 	dest[3]=src_a[3]*src_b[3];
 }
 
-void glmc_vec4f_mul_dest(vec4f src_dest, vec4f src_b){// dest *= src_a
+inline void glmc_vec4f_mul_dest(vec4f src_dest, vec4f src_b){// dest *= src_a
 	src_dest[0]=src_dest[0]*src_b[0];
 	src_dest[1]=src_dest[1]*src_b[1];
 	src_dest[2]=src_dest[2]*src_b[2];
 	src_dest[3]=src_dest[3]*src_b[3];
 }
 
-void glmc_vec4f_mul_s(vec4f dest, vec4f src_a, float src_b){// dest = src_a * scalar
+inline void glmc_vec4f_mul_s(vec4f dest, vec4f src_a, float src_b){// dest = src_a * scalar
 	dest[0]=src_a[0]*src_b;
 	dest[1]=src_a[1]*src_b;
 	dest[2]=src_a[2]*src_b;
 	dest[3]=src_a[3]*src_b;
 }
 
-void glmc_vec4f_div(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a / src_b
+inline void glmc_vec4f_div(vec4f dest, vec4f src_a, vec4f src_b){// dest = src_a / src_b
 	dest[0]=src_a[0]/src_b[0];
 	dest[1]=src_a[1]/src_b[1];
 	dest[2]=src_a[2]/src_b[2];
 	dest[3]=src_a[3]/src_b[3];
 }
 
-void glmc_vec4f_div_dest(vec4f src_dest, vec4f src_b){// dest /= src_a
+inline void glmc_vec4f_div_dest(vec4f src_dest, vec4f src_b){// dest /= src_a
 	src_dest[0]=src_dest[0]/src_b[0];
 	src_dest[1]=src_dest[1]/src_b[1];
 	src_dest[2]=src_dest[2]/src_b[2];
 	src_dest[3]=src_dest[3]/src_b[3];
 }
 
-void glmc_vec4f_div_s(vec4f dest, vec4f src_a, float src_b){// dest = src_a / scalar
+inline void glmc_vec4f_div_s(vec4f dest, vec4f src_a, float src_b){// dest = src_a / scalar
 	dest[0]=src_a[0]/src_b;
 	dest[1]=src_a[1]/src_b;
 	dest[2]=src_a[2]/src_b;
 	dest[3]=src_a[3]/src_b;
 }
 
-void glmc_vec4f_addadd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a + src_b
+inline void glmc_vec4f_addadd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a + src_b
 	dest[0]=dest[0]+src_a[0]+src_b[0];
 	dest[1]=dest[1]+src_a[1]+src_b[1];
 	dest[2]=dest[2]+src_a[2]+src_b[2];
 	dest[3]=dest[3]+src_a[3]+src_b[3];
 }
 
-void glmc_vec4f_subadd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a - src_b
+inline void glmc_vec4f_subadd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a - src_b
 	dest[0]=dest[0]+src_a[0]-src_b[0];
 	dest[1]=dest[1]+src_a[1]-src_b[1];
 	dest[2]=dest[2]+src_a[2]-src_b[2];
 	dest[3]=dest[3]+src_a[3]-src_b[3];
 }
 
-void glmc_vec4f_madd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a * src_b
+inline void glmc_vec4f_madd(vec4f dest, vec4f src_a, vec4f src_b){// dest += src_a * src_b
 	dest[0]=dest[0]+src_a[0]*src_b[0];
 	dest[1]=dest[1]+src_a[1]*src_b[1];
 	dest[2]=dest[2]+src_a[2]*src_b[2];
 	dest[3]=dest[3]+src_a[3]*src_b[3];
 }
 
-void glmc_vec4f_msub(vec4f dest, vec4f src_a, vec4f src_b){// dest -= src_a * src_b
+inline void glmc_vec4f_msub(vec4f dest, vec4f src_a, vec4f src_b){// dest -= src_a * src_b
 	dest[0]=dest[0]-src_a[0]*src_b[0];
 	dest[1]=dest[1]-src_a[1]*src_b[1];
 	dest[2]=dest[2]-src_a[2]*src_b[2];
 	dest[3]=dest[3]-src_a[3]*src_b[3];	
 }
 
-float glmc_vec4f_dot(vec4f src_a, vec4f src_b){ //Calculates dot product of vectors
+inline float glmc_vec4f_dot(vec4f src_a, vec4f src_b){ //Calculates dot product of vectors
 
 	return src_a[0]*src_b[0]+src_a[1]*src_b[1]+src_a[2]*src_b[2]*src_b[3]*src_b[3];
 }
