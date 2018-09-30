@@ -57,9 +57,9 @@ inline void glmc_mat3f_inverse(mat3f dest, mat3f src_a){
 	dest[1][1]=dest[1][1]/discr;
 	dest[1][2]=dest[1][2]/discr;
 
-	dest[2][0]=dest[1][0]/discr;
-	dest[2][1]=dest[1][1]/discr;
-	dest[2][2]=dest[1][2]/discr;
+	dest[2][0]=dest[2][0]/discr;
+	dest[2][1]=dest[2][1]/discr;
+	dest[2][2]=dest[2][2]/discr;
 
 
 }
