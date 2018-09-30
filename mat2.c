@@ -206,4 +206,3 @@ inline void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b) {// dest -= sr
 }
 
 
-

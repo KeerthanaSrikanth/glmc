@@ -364,3 +364,45 @@ inline void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b){// dest -= src
 	dest[2][2]=dest[2][2]-src_a[0][2]*src_b[2][0]+src_a[1][2]*src_b[2][1]+src_a[2][2]*src_b[2][2];
 }
 
+inline void glmc_mat3f_identity(mat3f dest){
+	dest[0][0]=1.0f;
+	dest[0][1]=0.0f;
+	dest[0][2]=0.0f;
+
+	dest[1][0]=0.0f;
+	dest[1][1]=1.0f;
+	dest[1][2]=0.0f;
+
+	dest[2][0]=0.0f;
+	dest[2][1]=0.0f;
+	dest[2][2]=1.0f;
+}
+
+inline void glmc_mat3f_scale(mat3f dest, float src_x, float src_y, float src_z){
+	dest[0][0]=src_x;
+	dest[1][0]=0.0f;
+	dest[2][0]=0.0f;
+
+	dest[0][1]=0.0f;
+	dest[1][1]=src_y;
+	dest[2][1]=0.0f;
+
+	dest[0][2]=0.0f;
+	dest[1][2]=0.0f;
+	dest[2][2]=src_z;
+
+}
+
+inline void glmc_mat3f_translate(mat3f dest, float	src_x, float src_y){
+	dest[0][0]=1.0f;
+	dest[1][0]=0.0f;
+	dest[2][0]=0.0f;
+
+	dest[0][1]=0.0f;
+	dest[1][1]=1.0f;
+	dest[2][1]=0.0f;
+
+	dest[0][2]=src_x;
+	dest[1][2]=src_y;
+	dest[2][2]=1.0f;
+}
