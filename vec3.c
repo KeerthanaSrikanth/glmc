@@ -62,7 +62,7 @@ inline int  glmc_vec3f_is_normalized(vec3f src){ //Checks if vector is normalize
 		return 0;
 }
 
-inline void glmc_vec3f_normlize(vec3f dest, vec3f src){//Normalizes vector
+inline void glmc_vec3f_normalize(vec3f dest, vec3f src){//Normalizes vector
 	float l=glmc_vec3f_length(src);
 
 	dest[0]=src[0]/l;
@@ -171,4 +171,36 @@ inline void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b){ //Calculate
 	dest[0]=src_a[1]*src_b[2]-src_b[1]*src_a[2];
 	dest[1]=src_a[2]*src_b[0]-src_b[2]*src_a[0];
 	dest[2]=src_a[0]*src_b[1]-src_b[0]*src_a[1];
+}
+
+inline void glmc_vec3f_reflect(vec3f r, vec3f i, vec3f n){
+	vec3f normalized;
+	glmc_vec3f_normalize(normalized, n);
+	vec3f product;
+	glmc_vec3f_mul_s(product, normalized, 2*glmc_vec3f_dot(normalized, i));
+	glmc_vec3f_sub(r, i, product);
+}
+
+inline void glmc_vec3f_refract(vec3f r, vec3f i, vec3f n, float eta){
+	vec3f I;
+	glmc_vec3f_normalize(I, i);
+	vec3f N;
+	glmc_vec3f_normalize(N, n);
+	float d=glmc_vec3f_dot(N, I);
+	float k=1.0- eta*eta*(1- d*d);
+
+	if(k<0.0){
+		r[0]=0.0f;
+		r[0]=0.0f;
+		r[0]=0.0f;
+		r[0]=0.0f;
+	}
+	else{
+		vec3f product1;
+		glmc_vec3f_mul_s(product1, I, eta);
+		vec3f product2;
+		glmc_vec3f_mul_s(product2, N, eta*d+sqrt(k));
+		glmc_vec3f_sub(r, product1, product2);
+	}
+
 }

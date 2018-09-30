@@ -64,7 +64,7 @@ inline int  glmc_vec4f_is_normalized(vec4f src){ //Checks if vector is normalize
 		return 0;
 }
 
-inline void glmc_vec4f_normlize(vec4f dest, vec4f src){//Normalizes vector
+inline void glmc_vec4f_normalize(vec4f dest, vec4f src){//Normalizes vector
 	float l=glmc_vec4f_length(src);
 	
 	dest[0]=src[0]/l;
@@ -177,4 +177,36 @@ inline void glmc_vec4f_msub(vec4f dest, vec4f src_a, vec4f src_b){// dest -= src
 inline float glmc_vec4f_dot(vec4f src_a, vec4f src_b){ //Calculates dot product of vectors
 
 	return src_a[0]*src_b[0]+src_a[1]*src_b[1]+src_a[2]*src_b[2]*src_b[3]*src_b[3];
+}
+
+inline void glmc_vec4f_reflect(vec4f r, vec4f i, vec4f n){
+	vec4f normalized;
+	glmc_vec4f_normalize(normalized, n);
+	vec4f product;
+	glmc_vec4f_mul_s(product, normalized, 2*glmc_vec4f_dot(normalized, i));
+	glmc_vec4f_sub(r, i, product);
+}
+
+inline void glmc_vec4f_refract(vec4f r, vec4f i, vec4f n, float eta){
+	vec4f I;
+	glmc_vec4f_normalize(I, i);
+	vec4f N;
+	glmc_vec4f_normalize(N, n);
+	float d=glmc_vec4f_dot(N, I);
+	float k=1.0- eta*eta*(1- d*d);
+
+	if(k<0.0){
+		r[0]=0.0f;
+		r[0]=0.0f;
+		r[0]=0.0f;
+		r[0]=0.0f;
+	}
+	else{
+		vec4f product1;
+		glmc_vec4f_mul_s(product1, I, eta);
+		vec4f product2;
+		glmc_vec4f_mul_s(product2, N, eta*d+sqrt(k));
+		glmc_vec4f_sub(r, product1, product2);
+	}
+
 }
