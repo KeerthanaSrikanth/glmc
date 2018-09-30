@@ -34,9 +34,9 @@ typedef float vec4f[4];
 typedef float vec3f[3];
 typedef float vec2f[2];
 
-typedef float mat4f[4][4];
-typedef float mat3f[3][3];
-typedef float mat2f[2][2];
+typedef vec4f mat4f[4];
+typedef vec3f mat3f[3];
+typedef vec2f mat2f[2];
 
 //Vectors
 
@@ -179,6 +179,10 @@ void glmc_mat3f_inverse(mat3f dest, mat3f src_a);
 void glmc_mat3f_transpose(mat3f dest, mat3f src_a);
 void glmc_mat3f_transpose_dest(mat3f src_a);
 
+void glmc_mat3f_identity(mat3f dest);
+void glmc_mat3f_scale(mat3f dest, float src_x, float src_y, float src_z);
+void glmc_mat3f_translate(mat3f dest, float	src_x, float src_y);
+
 
 // mat4f
 
@@ -211,6 +215,13 @@ void glmc_mat4f_inverse(mat4f dest, mat4f src_a);
 void glmc_mat4f_transpose(mat4f dest, mat4f src_a);
 void glmc_mat4f_transpose_dest(mat4f src_a);
 
+void glmc_mat4f_identity(mat4f dest);
+void glmc_mat4f_rotate(mat4f dest, float ux, float uy, float uz, float angle);
+void glmc_mat4f_scale(mat4f dest, float src_x, float src_y, float src_z);
+void glmc_mat4f_translate(mat4f dest, float	src_x, float src_y, float src_z);
+
+void glmc_mat4f_ortho_projection(mat4f dest, float l, float r, float t, float b, float f, float n);
+void glmc_mat4f_perspective_projection(mat4f dest,float v_angle, float aspect_ratio, float nearz, float farz);
 //   mat2f
 
 int  glmc_mat2f_is_normalized(mat2f src);
