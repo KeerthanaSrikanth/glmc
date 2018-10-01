@@ -161,7 +161,7 @@ inline float glmc_vec2f_dot(vec2f src_a, vec2f src_b){ //Calculates dot product 
 	
 }
 
-inline void glmc_vec2f_reflect(vec2f r, vec2f i, vec2f n){
+inline void glmc_vec2f_reflect(vec2f r, vec2f i, vec2f n){ //Finds reflected vector
 	vec2f normalized;
 	glmc_vec2f_normalize(normalized, n);
 	vec2f product;
@@ -169,7 +169,7 @@ inline void glmc_vec2f_reflect(vec2f r, vec2f i, vec2f n){
 	glmc_vec2f_sub(r, i, product);
 }
 
-inline void glmc_vec2f_refract(vec2f r, vec2f i, vec2f n, float eta){
+inline void glmc_vec2f_refract(vec2f r, vec2f i, vec2f n, float eta){ //Finds refracted vectors
 	vec4f I;
 	glmc_vec2f_normalize(I, i);
 	vec2f N;

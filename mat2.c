@@ -25,13 +25,13 @@
 
 #include "glmc.h"
 
-inline float glmc_mat2f_discriminant(mat2f src){
+inline float glmc_mat2f_discriminant(mat2f src){ //Calculates discriminant
 	
 	return src[0][0]*src[1][1]-src[1][0]*src[0][1];
 
 }
 
-inline void glmc_mat2f_transpose(mat2f dest, mat2f src_a){
+inline void glmc_mat2f_transpose(mat2f dest, mat2f src_a){ //Calculates transpose
 
 	dest[0][0]=src_a[0][0];
 	dest[1][0]=src_a[0][1];
@@ -39,13 +39,13 @@ inline void glmc_mat2f_transpose(mat2f dest, mat2f src_a){
 	dest[1][1]=src_a[1][1];
 }
 
-inline void glmc_mat2f_transpose_dest(mat2f src_a){
+inline void glmc_mat2f_transpose_dest(mat2f src_a){ //Calculates transpose inplace
 	float temp=src_a[0][1];
 	src_a[0][1]=src_a[1][0];
 	src_a[1][0]=temp;
 }
 
-inline void glmc_mat2f_inverse(mat2f dest, mat2f src_a){
+inline void glmc_mat2f_inverse(mat2f dest, mat2f src_a){ //Calculates inverse
 
 	float discr=glmc_mat2f_discriminant(src_a);
 	if(discr!=0){
@@ -57,14 +57,14 @@ inline void glmc_mat2f_inverse(mat2f dest, mat2f src_a){
 
 }
 
-inline int  glmc_mat2f_is_normalized(mat2f src){
+inline int  glmc_mat2f_is_normalized(mat2f src){ //Checks if matrix is normalised
 	if(glmc_mat2f_discriminant(src)==1)
 		return 1;
 	else
 		return 0;
 }
 
-inline void glmc_mat2f_normlize(mat2f dest, mat2f src){
+inline void glmc_mat2f_normlize(mat2f dest, mat2f src){ //Normalises matrix
 	float discr=glmc_mat2f_discriminant(src);
 	dest[0][0]=src[0][0]/discr;
 	dest[0][1]=src[0][1]/discr;
@@ -73,7 +73,7 @@ inline void glmc_mat2f_normlize(mat2f dest, mat2f src){
 
 }
 
-inline void glmc_mat2f_normlize_dest(mat2f src){
+inline void glmc_mat2f_normlize_dest(mat2f src){ //Normalizes matrix inplace
 	float discr=glmc_mat2f_discriminant(src);
 	src[0][0]=src[0][0]/discr;
 	src[0][1]=src[0][1]/discr;
@@ -206,3 +206,25 @@ inline void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b) {// dest -= sr
 }
 
 
+inline void glmc_mat2f_to_array2f(array2f dest, mat2f src){ //Converts matrix to 1D array
+	dest[0]=src[0][0];
+	dest[1]=src[0][1];
+	dest[2]=src[1][0];
+	dest[3]=src[1][1];
+}
+
+inline void glmc_mat2f_create(mat2f dest){ //Automatically normalize according to compiler flag
+	
+	scanf("%f", &dest[0][0]);
+	scanf("%f", &dest[0][1]);
+	scanf("%f", &dest[1][0]);
+	scanf("%f", &dest[1][1]);
+
+	#ifdef STRICT_NORMALIZE
+		glmc_mat2f_normalize_dest(dest);
+
+	#endif
+
+	
+
+}

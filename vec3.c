@@ -173,7 +173,7 @@ inline void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b){ //Calculate
 	dest[2]=src_a[0]*src_b[1]-src_b[0]*src_a[1];
 }
 
-inline void glmc_vec3f_reflect(vec3f r, vec3f i, vec3f n){
+inline void glmc_vec3f_reflect(vec3f r, vec3f i, vec3f n){ //Finds reflected vector
 	vec3f normalized;
 	glmc_vec3f_normalize(normalized, n);
 	vec3f product;
@@ -181,7 +181,7 @@ inline void glmc_vec3f_reflect(vec3f r, vec3f i, vec3f n){
 	glmc_vec3f_sub(r, i, product);
 }
 
-inline void glmc_vec3f_refract(vec3f r, vec3f i, vec3f n, float eta){
+inline void glmc_vec3f_refract(vec3f r, vec3f i, vec3f n, float eta){//Finds refracted vector
 	vec3f I;
 	glmc_vec3f_normalize(I, i);
 	vec3f N;

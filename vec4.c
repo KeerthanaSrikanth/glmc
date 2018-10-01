@@ -179,7 +179,7 @@ inline float glmc_vec4f_dot(vec4f src_a, vec4f src_b){ //Calculates dot product 
 	return src_a[0]*src_b[0]+src_a[1]*src_b[1]+src_a[2]*src_b[2]*src_b[3]*src_b[3];
 }
 
-inline void glmc_vec4f_reflect(vec4f r, vec4f i, vec4f n){
+inline void glmc_vec4f_reflect(vec4f r, vec4f i, vec4f n){ //Finds reflected vector
 	vec4f normalized;
 	glmc_vec4f_normalize(normalized, n);
 	vec4f product;
@@ -187,7 +187,7 @@ inline void glmc_vec4f_reflect(vec4f r, vec4f i, vec4f n){
 	glmc_vec4f_sub(r, i, product);
 }
 
-inline void glmc_vec4f_refract(vec4f r, vec4f i, vec4f n, float eta){
+inline void glmc_vec4f_refract(vec4f r, vec4f i, vec4f n, float eta){ //Finds refracted vector
 	vec4f I;
 	glmc_vec4f_normalize(I, i);
 	vec4f N;

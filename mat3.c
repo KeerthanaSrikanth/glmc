@@ -26,12 +26,13 @@
 
 #include "glmc.h"
 
-inline float glmc_mat3f_discriminant(mat3f src_a){
+inline float glmc_mat3f_discriminant(mat3f src_a){//Calculates dicriminant of matrix
 	
 	return src_a[0][0]*(src_a[1][1]*src_a[2][2]-src_a[1][2]*src_a[2][1])-src_a[0][1]*(src_a[1][0]*src_a[2][2]-src_a[1][2]*src_a[2][0])+src_a[0][2]*(src_a[1][0]*src_a[2][1]-src_a[1][1]*src_a[2][0]);
 	
 }
-inline void glmc_mat3f_inverse(mat3f dest, mat3f src_a){
+
+inline void glmc_mat3f_inverse(mat3f dest, mat3f src_a){ //Calcuates inverse of matrix
 	mat3f cof;
 
 	cof[0][0]=src_a[1][1]*src_a[2][2]-src_a[1][2]*src_a[2][1];
@@ -64,7 +65,7 @@ inline void glmc_mat3f_inverse(mat3f dest, mat3f src_a){
 
 }
 
-inline void glmc_mat3f_transpose(mat3f dest, mat3f src_a){
+inline void glmc_mat3f_transpose(mat3f dest, mat3f src_a){ //Transposes matrix
 	dest[0][0]=src_a[0][0];
 	dest[1][0]=src_a[0][1];
 	dest[2][0]=src_a[0][2];
@@ -78,7 +79,7 @@ inline void glmc_mat3f_transpose(mat3f dest, mat3f src_a){
 	dest[2][2]=src_a[2][2];
 }
 
-inline void glmc_mat3f_transpose_dest(mat3f src_a){
+inline void glmc_mat3f_transpose_dest(mat3f src_a){ //Transposes matrix inplace
 
 	float temp=src_a[0][1];
 	src_a[0][1]=src_a[1][0];
@@ -94,7 +95,7 @@ inline void glmc_mat3f_transpose_dest(mat3f src_a){
 
 }
 
-inline int  glmc_mat3f_is_normalized(mat3f src){
+inline int  glmc_mat3f_is_normalized(mat3f src){ //Checks if matrix is normalized
 	
 	if(glmc_mat3f_discriminant(src)==1)
 		return 1;
@@ -102,7 +103,7 @@ inline int  glmc_mat3f_is_normalized(mat3f src){
 		return 0;
 }
 
-inline void glmc_mat3f_normlize(mat3f dest, mat3f src){
+inline void glmc_mat3f_normlize(mat3f dest, mat3f src){ //Normalize matrix
 	float discr=glmc_mat3f_discriminant(src);
 	dest[0][0]=src[0][0]/discr;
 	dest[0][1]=src[0][1]/discr;
@@ -119,7 +120,7 @@ inline void glmc_mat3f_normlize(mat3f dest, mat3f src){
 }
 
 
-inline void glmc_mat3f_normlize_dest(mat3f src){
+inline void glmc_mat3f_normlize_dest(mat3f src){ //Normalize matrix inplace
 	float discr=glmc_mat3f_discriminant(src);
 	src[0][0]=src[0][0]/discr;
 	src[0][1]=src[0][1]/discr;
@@ -364,7 +365,7 @@ inline void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b){// dest -= src
 	dest[2][2]=dest[2][2]-src_a[0][2]*src_b[2][0]+src_a[1][2]*src_b[2][1]+src_a[2][2]*src_b[2][2];
 }
 
-inline void glmc_mat3f_identity(mat3f dest){
+inline void glmc_mat3f_identity(mat3f dest){ //Creates identity matrix
 	dest[0][0]=1.0f;
 	dest[0][1]=0.0f;
 	dest[0][2]=0.0f;
@@ -378,7 +379,7 @@ inline void glmc_mat3f_identity(mat3f dest){
 	dest[2][2]=1.0f;
 }
 
-inline void glmc_mat3f_scale(mat3f dest, float src_x, float src_y, float src_z){
+inline void glmc_mat3f_scale(mat3f dest, float src_x, float src_y, float src_z){ //Creates scaling matrix
 	dest[0][0]=src_x;
 	dest[1][0]=0.0f;
 	dest[2][0]=0.0f;
@@ -393,7 +394,7 @@ inline void glmc_mat3f_scale(mat3f dest, float src_x, float src_y, float src_z){
 
 }
 
-inline void glmc_mat3f_translate(mat3f dest, float	src_x, float src_y){
+inline void glmc_mat3f_translate(mat3f dest, float	src_x, float src_y){ //Creates translation matrix
 	dest[0][0]=1.0f;
 	dest[1][0]=0.0f;
 	dest[2][0]=0.0f;
@@ -405,4 +406,37 @@ inline void glmc_mat3f_translate(mat3f dest, float	src_x, float src_y){
 	dest[0][2]=src_x;
 	dest[1][2]=src_y;
 	dest[2][2]=1.0f;
+}
+
+inline void glmc_mat3f_to_array3f(array3f dest, mat3f src){ //Converts matrix to 1D array
+	dest[0]=src[0][0];
+	dest[1]=src[0][1];
+	dest[2]=src[0][2];
+
+	dest[3]=src[1][0];
+	dest[4]=src[1][1];
+	dest[5]=src[1][2];
+
+	dest[6]=src[2][0];
+	dest[7]=src[2][1];
+	dest[8]=src[2][2];
+}
+
+inline void glmc_mat3f_create(mat3f dest){ //Automatically normalize according to compiler flag
+	scanf("%f", &dest[0][0]);
+	scanf("%f", &dest[0][1]);
+	scanf("%f", &dest[0][2]);
+
+	scanf("%f", &dest[1][0]);
+	scanf("%f", &dest[1][1]);
+	scanf("%f", &dest[1][2]);
+
+	scanf("%f", &dest[2][0]);
+	scanf("%f", &dest[2][1]);
+	scanf("%f", &dest[2][2]);
+
+	#ifdef STRICT_NORMALIZE
+		glmc_mat3f_normalize_dest(dest);
+
+	#endif
 }
