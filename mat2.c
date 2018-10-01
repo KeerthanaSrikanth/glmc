@@ -221,7 +221,11 @@ inline void glmc_mat2f_create(mat2f dest){ //Automatically normalize according t
 	scanf("%f", &dest[1][1]);
 
 	#ifdef STRICT_NORMALIZE
-		glmc_mat2f_normalize_dest(dest);
+		float discr=glmc_mat2f_discriminant(dest);
+		dest[0][0]=dest[0][0]/discr;
+		dest[0][1]=dest[0][1]/discr;
+		dest[1][0]=dest[1][0]/discr;
+		dest[1][1]=dest[1][1]/discr;
 
 	#endif
 

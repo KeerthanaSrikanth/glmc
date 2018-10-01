@@ -436,7 +436,18 @@ inline void glmc_mat3f_create(mat3f dest){ //Automatically normalize according t
 	scanf("%f", &dest[2][2]);
 
 	#ifdef STRICT_NORMALIZE
-		glmc_mat3f_normalize_dest(dest);
+		float discr=glmc_mat3f_discriminant(dest);
+	dest[0][0]=dest[0][0]/discr;
+	dest[0][1]=dest[0][1]/discr;
+	dest[0][2]=dest[0][2]/discr;
+
+	dest[1][0]=dest[1][0]/discr;
+	dest[1][1]=dest[1][1]/discr;
+	dest[1][2]=dest[1][2]/discr;
+
+	dest[2][0]=dest[1][0]/discr;
+	dest[2][1]=dest[1][1]/discr;
+	dest[2][2]=dest[1][2]/discr;
 
 	#endif
 }

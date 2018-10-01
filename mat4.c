@@ -740,7 +740,27 @@ inline void glmc_mat4f_create(mat4f dest){ //Automatically normalize according t
 
 
 	#ifdef STRICT_NORMALIZE
-		glmc_mat4f_normalize_dest(dest);
+		float discr=glmc_mat4f_discriminant(dest);
+
+		dest[0][0]=dest[0][0]/discr;
+		dest[0][1]=dest[0][1]/discr;
+		dest[0][2]=dest[0][2]/discr;
+		dest[0][3]=dest[0][3]/discr;
+
+		dest[1][0]=dest[1][0]/discr;
+		dest[1][1]=dest[1][1]/discr;
+		dest[1][2]=dest[1][2]/discr;
+		dest[1][3]=dest[1][3]/discr;
+
+		dest[2][0]=dest[2][0]/discr;
+		dest[2][1]=dest[2][1]/discr;
+		dest[2][2]=dest[2][2]/discr;
+		dest[2][3]=dest[2][3]/discr;
+
+		dest[3][0]=dest[3][0]/discr;
+		dest[3][1]=dest[3][1]/discr;
+		dest[3][2]=dest[3][2]/discr;
+		dest[3][3]=dest[3][3]/discr;
 
 	#endif
 }
